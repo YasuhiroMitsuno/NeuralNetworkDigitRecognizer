@@ -7,8 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "digitViewer.h"
 
 @interface ViewController : UIViewController
+{
+    IBOutlet digitViewer *viewer;
+    IBOutlet UIButton *recogButton;
+    IBOutlet UIButton *resetButton;
+    IBOutlet UIButton *trainButton;
+    IBOutlet UISlider *slider;
+}
 
 
 @end

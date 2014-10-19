@@ -12,10 +12,10 @@
 #define IN ROW*COL
 #define HID 100
 #define OUT 10
-#define DATA_NUM 10
+#define DATA_NUM 11
 #define E 2.71828183
-#define alpha 0.2
-#define beta 0.2
+#define alpha 0.3
+#define beta 0.3
 
 @interface Recognizer()
 {
@@ -42,9 +42,11 @@ int traning[DATA_NUM][IN] = {
     {0,1,1,1,1,1,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,},
     {0,0,1,1,1,0,0,0,1,0,0,0,1,0,0,1,0,0,0,1,0,0,0,1,1,1,0,0,0,1,0,0,0,1,0,0,1,0,0,0,1,0,0,0,1,1,1,0,0,},
     {0,0,1,1,1,0,0,0,1,0,0,0,1,0,0,1,0,0,0,1,0,0,0,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1,1,1,0,0,},
+//    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+    {0,1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,1,1,1,1,1,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,0,},
 };
 
-int teacher[DATA_NUM] = {'0','1','2','3','4','5','6','7','8','9'};
+int teacher[DATA_NUM] = {'0','1','2','3','4','5','6','7','8','9','2'};
 int digiter[OUT] = {'0','1','2','3','4','5','6','7','8','9'};//,':',';','<'};
 
 - (void)initialize
@@ -91,53 +93,56 @@ double sigmoid(double x){
 {
     int i,j,k;
     int tra = 0;
-    int loop = 40000;
+    int loop = 100;
     double buf;
+    double error = 1;
     
-    while(loop--){
-        for(j=0;j<HID;j++){
-            buf = 0;
-            for(i=0;i<IN;i++){
-                buf += W[i][j]*traning[tra][i];
+    while(error>0.03){
+        for (int tra = 0;tra < DATA_NUM;tra++) {
+            for(j=0;j<HID;j++){
+                buf = 0;
+                for(i=0;i<IN;i++){
+                    buf += W[i][j]*traning[tra][i];
+                }
+                H[j] = sigmoid(buf+hid_sikii[j]);
             }
             
-            H[j] = sigmoid(buf+hid_sikii[j]);
-        }
-        
-        for(k=0;k<OUT;k++){
-            buf = 0;
-            for(j=0;j<HID;j++){
-                buf += V[j][k]*H[j];
-            }
-            O[k] = sigmoid(buf+out_sikii[k]);
-        }
-        for(k=0;k<OUT;k++){
-            delta[k] = ((double)((teacher[tra]>>k)&1)-O[k])*O[k]*(1-O[k]);
-        }
-        
-        for(j=0;j<HID;j++){
-            buf = 0;
             for(k=0;k<OUT;k++){
-                buf += delta[k]*V[j][k];
+                buf = 0;
+                for(j=0;j<HID;j++){
+                    buf += V[j][k]*H[j];
+                }
+                O[k] = sigmoid(buf+out_sikii[k]);
             }
-            sigma[j] = buf*H[j]*(1-H[j]);
-        }
-        
-        for(k=0;k<OUT;k++){
+            error = 0;
+            for(k=0;k<OUT;k++){
+                delta[k] = ((double)((teacher[tra]>>k)&1)-O[k])*O[k]*(1-O[k]);
+                error += ((double)((teacher[tra]>>k)&1)-O[k])*((double)((teacher[tra]>>k)&1)-O[k]);
+            }
+            error = sqrt(error);
+
             for(j=0;j<HID;j++){
-                V[j][k] = V[j][k] + alpha*delta[k]*H[j];
+                buf = 0;
+                for(k=0;k<OUT;k++){
+                    buf += delta[k]*V[j][k];
+                }
+                sigma[j] = buf*H[j]*(1-H[j]);
             }
-            out_sikii[k] = out_sikii[k] + beta*delta[k];
+            
+            for(k=0;k<OUT;k++){
+                for(j=0;j<HID;j++){
+                    V[j][k] = V[j][k] + alpha*delta[k]*H[j];
+                }
+                out_sikii[k] = out_sikii[k] + beta*delta[k];
+            }
+            for(j=0;j<HID;j++){
+                for(i=0;i<IN;i++){  
+                    W[i][j] = W[i][j] + alpha*sigma[j]*traning[tra][i];
+                }
+                hid_sikii[j] = hid_sikii[j] + beta*sigma[j];
+            }
+            
         }
-        //    printf("%f\n", sigma[0]);
-        for(j=0;j<HID;j++){
-            for(i=0;i<IN;i++){  
-                W[i][j] = W[i][j] + alpha*sigma[j]*traning[tra][i];
-            }
-            hid_sikii[j] = hid_sikii[j] + beta*sigma[j];
-        }  
-        //    printf("%f\n", W[0][0]);
-        tra = (tra + 1)%OUT;
     }
 }
 

@@ -10,9 +10,9 @@
 
 @interface digitViewer : UIView
 
-- (void)setDots;
 - (void)reset;
 - (void)setBits:(NSArray *)bits;
 - (NSArray *)getBits;
+@property (nonatomic, assign) CGFloat DOTS;
 
 @end

@@ -30,8 +30,8 @@
             label.textAlignment = NSTextAlignmentCenter;
             label.font = [UIFont systemFontOfSize:10];
             UILabel *plabel = [[UILabel alloc] initWithFrame:CGRectMake(30*i+5, 80, 30, 12)];
-            plabel.text = @"0%";
-            plabel.textAlignment = NSTextAlignmentCenter;
+            plabel.text = @"0.0%";
+            plabel.textAlignment = NSTextAlignmentRight;
             plabel.font = [UIFont systemFontOfSize:8];
             
             UIView *dot = [[UIView alloc] initWithFrame:CGRectMake(30 * i + 15, 25, 10, 0)];
@@ -54,6 +54,17 @@
         NSNumber *num = [result objectAtIndex:i];
         label.text = [NSString stringWithFormat:@"%.1lf%%", [num doubleValue] * 100];
         CGFloat height = [num doubleValue] * 50;
+        dot.frame = CGRectMake(dot.frame.origin.x, 75 - height, dot.frame.size.width, height);
+    }
+}
+
+- (void)reset
+{
+    for (int i=0;i<10;i++) {
+        UILabel *label = [plabels objectAtIndex:i];
+        UIView *dot = [dots objectAtIndex:i];
+        label.text = @"0.0%";
+        CGFloat height = 0;
         dot.frame = CGRectMake(dot.frame.origin.x, 75 - height, dot.frame.size.width, height);
     }
 }

@@ -11,4 +11,6 @@
 @interface resultViewer : UIView
 
 - (void)set:(NSArray *)result;
+- (void)reset;
+
 @end
