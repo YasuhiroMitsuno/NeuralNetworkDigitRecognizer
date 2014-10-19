@@ -48,6 +48,15 @@
 
 - (void)set:(NSArray *)result
 {
+    int index = 0;
+    double maximum = 0;
+    for (int i=0;i<10;i++) {
+        double value = [[result objectAtIndex:i] doubleValue];
+        if (value > maximum) {
+            index = i;
+            maximum = value;
+        }
+    }
     for (int i=0;i<10;i++) {
         UILabel *label = [plabels objectAtIndex:i];
         UIView *dot = [dots objectAtIndex:i];
@@ -55,7 +64,10 @@
         label.text = [NSString stringWithFormat:@"%.1lf%%", [num doubleValue] * 100];
         CGFloat height = [num doubleValue] * 50;
         dot.frame = CGRectMake(dot.frame.origin.x, 75 - height, dot.frame.size.width, height);
+        dot.backgroundColor = [UIColor blueColor];
     }
+    UIView *topView = [dots objectAtIndex:index];
+    topView.backgroundColor = [UIColor greenColor];
 }
 
 - (void)reset
@@ -66,6 +78,7 @@
         label.text = @"0.0%";
         CGFloat height = 0;
         dot.frame = CGRectMake(dot.frame.origin.x, 75 - height, dot.frame.size.width, height);
+        dot.backgroundColor = [UIColor blueColor];
     }
 }
 
