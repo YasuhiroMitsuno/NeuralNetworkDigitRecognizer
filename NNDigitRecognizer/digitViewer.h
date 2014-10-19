@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  digitViewer.h
 //  NeuralDigit
 //
 //  Created by yasu on 2014/10/17.
@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface digitViewer : UIView
 
+- (void)setDots;
+- (void)reset;
+- (void)setBits:(NSArray *)bits;
+- (NSArray *)getBits;
 
 @end
-

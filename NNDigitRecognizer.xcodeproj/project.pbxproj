@@ -14,6 +14,12 @@
 		5A21A10819F3B33A00D8E187 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A21A10719F3B33A00D8E187 /* Images.xcassets */; };
 		5A21A10B19F3B33A00D8E187 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A21A10919F3B33A00D8E187 /* LaunchScreen.xib */; };
 		5A21A11719F3B33B00D8E187 /* NNDigitRecognizerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A21A11619F3B33B00D8E187 /* NNDigitRecognizerTests.m */; };
+		5A21A12219F3B3A800D8E187 /* digitViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A21A12119F3B3A800D8E187 /* digitViewer.m */; };
+		5A21A12319F3B3A800D8E187 /* digitViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A21A12119F3B3A800D8E187 /* digitViewer.m */; };
+		5A21A12819F3B3B000D8E187 /* Recognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A21A12519F3B3B000D8E187 /* Recognizer.m */; };
+		5A21A12919F3B3B000D8E187 /* Recognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A21A12519F3B3B000D8E187 /* Recognizer.m */; };
+		5A21A12A19F3B3B000D8E187 /* resultViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A21A12719F3B3B000D8E187 /* resultViewer.m */; };
+		5A21A12B19F3B3B000D8E187 /* resultViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A21A12719F3B3B000D8E187 /* resultViewer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +46,12 @@
 		5A21A11019F3B33B00D8E187 /* NNDigitRecognizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NNDigitRecognizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A21A11519F3B33B00D8E187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A21A11619F3B33B00D8E187 /* NNDigitRecognizerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NNDigitRecognizerTests.m; sourceTree = "<group>"; };
+		5A21A12019F3B3A800D8E187 /* digitViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = digitViewer.h; sourceTree = "<group>"; };
+		5A21A12119F3B3A800D8E187 /* digitViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = digitViewer.m; sourceTree = "<group>"; };
+		5A21A12419F3B3B000D8E187 /* Recognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recognizer.h; sourceTree = "<group>"; };
+		5A21A12519F3B3B000D8E187 /* Recognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recognizer.m; sourceTree = "<group>"; };
+		5A21A12619F3B3B000D8E187 /* resultViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resultViewer.h; sourceTree = "<group>"; };
+		5A21A12719F3B3B000D8E187 /* resultViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = resultViewer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +97,12 @@
 				5A21A0FF19F3B33A00D8E187 /* AppDelegate.m */,
 				5A21A10119F3B33A00D8E187 /* ViewController.h */,
 				5A21A10219F3B33A00D8E187 /* ViewController.m */,
+				5A21A12419F3B3B000D8E187 /* Recognizer.h */,
+				5A21A12519F3B3B000D8E187 /* Recognizer.m */,
+				5A21A12619F3B3B000D8E187 /* resultViewer.h */,
+				5A21A12719F3B3B000D8E187 /* resultViewer.m */,
+				5A21A12019F3B3A800D8E187 /* digitViewer.h */,
+				5A21A12119F3B3A800D8E187 /* digitViewer.m */,
 				5A21A10419F3B33A00D8E187 /* Main.storyboard */,
 				5A21A10719F3B33A00D8E187 /* Images.xcassets */,
 				5A21A10919F3B33A00D8E187 /* LaunchScreen.xib */,
@@ -220,8 +238,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A21A10319F3B33A00D8E187 /* ViewController.m in Sources */,
+				5A21A12819F3B3B000D8E187 /* Recognizer.m in Sources */,
+				5A21A12A19F3B3B000D8E187 /* resultViewer.m in Sources */,
 				5A21A10019F3B33A00D8E187 /* AppDelegate.m in Sources */,
 				5A21A0FD19F3B33A00D8E187 /* main.m in Sources */,
+				5A21A12219F3B3A800D8E187 /* digitViewer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +251,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A21A11719F3B33B00D8E187 /* NNDigitRecognizerTests.m in Sources */,
+				5A21A12919F3B3B000D8E187 /* Recognizer.m in Sources */,
+				5A21A12B19F3B3B000D8E187 /* resultViewer.m in Sources */,
+				5A21A12319F3B3A800D8E187 /* digitViewer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
